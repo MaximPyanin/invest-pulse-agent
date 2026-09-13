@@ -44,10 +44,10 @@ import json
 import logging
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
-from typing import Any, Callable, TYPE_CHECKING
+from typing import Callable, TYPE_CHECKING
 
-from .config import get_settings
-from .db import get_db
+from ..config import get_settings
+from ..db import get_db
 from .learning import _upsert_weight
 
 if TYPE_CHECKING:
@@ -438,7 +438,7 @@ async def alerts_poll_job(application: "Application") -> None:
     update, so when user resumes the first poll gives them a fresh baseline.
     """
     from .scheduler import is_paused  # lazy import to avoid circular
-    from .agents.market import collect_market_data  # lazy import
+    from ..agents.market import collect_market_data  # lazy import
 
     if await is_paused():
         log.debug("alerts: poll skipped (paused)")
@@ -494,8 +494,8 @@ if __name__ == "__main__":
     )
 
     async def _main() -> None:
-        from .agents.market import collect_market_data
-        from .db import init_db
+        from ..agents.market import collect_market_data
+        from ..db import init_db
 
         await init_db()
 

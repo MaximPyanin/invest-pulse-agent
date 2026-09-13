@@ -23,18 +23,14 @@ sources. Reddit subreddit list is ~80% idea-relevant, ~20% investing.
 from __future__ import annotations
 
 import asyncio
-import calendar
-import hashlib
 import json
 import logging
 from datetime import datetime, timezone
-from typing import Any
 
 import httpx
 from bs4 import BeautifulSoup
 
 from ..config import get_settings
-from ..db import get_db
 from ..state import OracleState
 from .scout import (
     fetch_feed,

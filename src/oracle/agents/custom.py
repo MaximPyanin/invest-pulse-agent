@@ -48,7 +48,7 @@ from ..config import get_settings
 from ..db import get_db, init_db
 from ..state import OracleState
 from .scout import fetch_feed, freshness_score, persist_signals
-from .trend import BROWSER_USER_AGENT, REDDIT_USER_AGENT, fetch_reddit_subreddit
+from .trend import BROWSER_USER_AGENT, fetch_reddit_subreddit
 
 log = logging.getLogger(__name__)
 

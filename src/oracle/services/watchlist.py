@@ -18,7 +18,7 @@ import logging
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from .db import get_db
+from ..db import get_db
 
 log = logging.getLogger(__name__)
 

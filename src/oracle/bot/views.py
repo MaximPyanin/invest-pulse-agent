@@ -239,7 +239,7 @@ def render_urgent_section(
 
     # 2. Biggest portfolio movers in last 24h (signal-rich for Maksim)
     if portfolio_movers:
-        from ..portfolio import display_name  # noqa: PLC0415
+        from ..services.portfolio import display_name  # noqa: PLC0415
         lines.append("")
         lines.append("<b>📊 Твои активы — самые большие движения за 24ч:</b>")
         for m in portfolio_movers[:5]:
@@ -297,7 +297,7 @@ def render_portfolio_morning_advice(
     Returns HTML-formatted Telegram message. One line per holding plus a
     totals footer.
     """
-    from ..portfolio import display_name  # noqa: PLC0415
+    from ..services.portfolio import display_name  # noqa: PLC0415
 
     holdings_by_label = {
         (h.get("asset_label") or "").upper(): h
@@ -470,7 +470,7 @@ def render_investment_card(sig: InvestmentSignal, n: int) -> str:
     `trend` (current momentum) between news and critics, `prediction`
     (forecast) AFTER the verdict.
     """
-    from ..portfolio import display_name  # noqa: PLC0415
+    from ..services.portfolio import display_name  # noqa: PLC0415
 
     action = (sig.action or "WAIT").upper()
 

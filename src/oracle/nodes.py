@@ -23,16 +23,19 @@ from __future__ import annotations
 import logging
 from typing import Literal
 
-from .agents.critic import critic_node                            # Step 11
-from .agents.custom import custom_node                            # Step 7
-from .agents.idea_generator import idea_generator_node            # Step 10/11
-from .agents.investment_analyzer import investment_analyzer_node  # Step 13 + 13.5
-from .agents.investment_critic import investment_critic_node      # Step 13.5
-from .agents.market import market_node                            # Step 4
-from .agents.scout import scout_node                              # Step 5
-from .agents.synthesizer import synthesizer_node                  # Step 9
-from .agents.trend import trend_node                              # Step 6
-from .agents.validator import validator_node                      # Step 12
+# Re-exported for graph.py — these names look "unused" in this file alone,
+# but graph.py imports every one of them from here (`from .nodes import
+# critic_node, ...`). Don't remove even though nothing below references them.
+from .agents.critic import critic_node  # noqa: F401 — Step 11
+from .agents.custom import custom_node  # noqa: F401 — Step 7
+from .agents.idea_generator import idea_generator_node  # noqa: F401 — Step 10/11
+from .agents.investment_analyzer import investment_analyzer_node  # noqa: F401 — Step 13 + 13.5
+from .agents.investment_critic import investment_critic_node  # noqa: F401 — Step 13.5
+from .agents.market import market_node  # noqa: F401 — Step 4
+from .agents.scout import scout_node  # noqa: F401 — Step 5
+from .agents.synthesizer import synthesizer_node  # noqa: F401 — Step 9
+from .agents.trend import trend_node  # noqa: F401 — Step 6
+from .agents.validator import validator_node  # noqa: F401 — Step 12
 from .state import OracleState
 
 log = logging.getLogger(__name__)

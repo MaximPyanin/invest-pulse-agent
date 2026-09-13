@@ -39,13 +39,13 @@ async def _main() -> None:
 
     from oracle.agents.market import collect_market_data
     from oracle.agents.portfolio_advisor import generate_morning_portfolio_advice
-    from oracle.alerts import get_active_alerts_no_dedup, get_recently_fired_alerts
+    from oracle.services.alerts import get_active_alerts_no_dedup, get_recently_fired_alerts
     from oracle.bot.views import (
         render_portfolio_morning_advice,
         render_urgent_section,
     )
     from oracle.db import init_db
-    from oracle.portfolio import get_portfolio_with_pnl
+    from oracle.services.portfolio import get_portfolio_with_pnl
 
     await init_db()  # ensures v5 schema
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")

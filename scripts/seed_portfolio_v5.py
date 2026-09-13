@@ -46,7 +46,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from oracle.db import init_db  # noqa: E402
-from oracle.portfolio import (  # noqa: E402
+from oracle.services.portfolio import (  # noqa: E402
     add_usd_holding,
     format_portfolio_for_llm,
     get_portfolio_with_pnl,
@@ -145,7 +145,7 @@ async def _seed() -> None:
     except Exception as e:
         log.warning("seed: market data fetch failed (non-fatal): %s", e)
 
-    from oracle.portfolio import _lookup_current_price  # noqa: PLC0415
+    from oracle.services.portfolio import _lookup_current_price  # noqa: PLC0415
 
     log.info("seed: inserting %d positions ...", len(HOLDINGS))
     for h in HOLDINGS:

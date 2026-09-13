@@ -4,8 +4,11 @@ Runs inside the bot process (Option A from the design decision). Uses
 APScheduler's AsyncIOScheduler integrated with python-telegram-bot's
 asyncio event loop. Two cron jobs:
 
-  07:00 Warsaw  →  morning_brief_job  (fast: market collector + top breaking
-                                        signals from DB, ~5 sec, no LLM)
+  09:30 Warsaw  →  morning_brief_job  (fast: market collector + top breaking
+                                        signals from DB, ~5 sec, no LLM).
+                                        Originally 07:00; moved to 09:30 so
+                                        EU-listed UCITS tickers have live
+                                        quotes (see the CronTrigger below).
   19:00 Warsaw  →  evening_digest_job (full graph: collectors + LLM chain +
                                         validator, ~60-90 sec with OpenAI key)
 
@@ -36,10 +39,10 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
 
-from .config import get_settings
-from .db import get_db
+from ..config import get_settings
+from ..db import get_db
 from .learning import _upsert_weight
-from .models import BusinessIdea, InvestmentSignal
+from ..models import BusinessIdea, InvestmentSignal
 
 if TYPE_CHECKING:
     from telegram.ext import Application
@@ -117,10 +120,10 @@ async def morning_brief_job(application: "Application") -> None:
         return
 
     # Lazy imports to avoid circular issues and keep scheduler light at startup
-    from .agents.market import collect_market_data
-    from .agents.portfolio_advisor import generate_morning_portfolio_advice
+    from ..agents.market import collect_market_data
+    from ..agents.portfolio_advisor import generate_morning_portfolio_advice
     from .alerts import get_active_alerts_no_dedup, get_recently_fired_alerts
-    from .bot.views import (
+    from ..bot.views import (
         render_portfolio_morning_advice,
         render_urgent_section,
     )
@@ -247,13 +250,13 @@ async def evening_digest_job(application: "Application") -> None:
         return
 
     # Lazy imports
-    from .bot.views import (
+    from ..bot.views import (
         idea_buttons,
         investment_buttons,
         render_idea_card,
         render_investment_card,
     )
-    from .main import run_once
+    from ..main import run_once
 
     # 1. Run the full graph
     try:

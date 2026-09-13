@@ -38,7 +38,7 @@ from telegram.ext import (
 from ..agents.custom import load_active_sources
 from ..config import get_settings
 from ..db import init_db
-from ..scheduler import setup_scheduler, shutdown_scheduler
+from ..services.scheduler import setup_scheduler, shutdown_scheduler
 from .handlers import (
     ASK_ADJUST_AMOUNT,
     ASK_CATEGORY,

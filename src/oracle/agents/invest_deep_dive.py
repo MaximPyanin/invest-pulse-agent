@@ -21,6 +21,7 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 from ..config import get_settings
+from ..prompts.invest_deep_dive import SYSTEM_PROMPT
 
 log = logging.getLogger(__name__)
 
@@ -69,24 +70,6 @@ class InvestDeepDive(BaseModel):
             "'-25% к $36 при остановке Казахстан-поставок или отмене MSFT-PPA.'"
         )
     )
-
-
-SYSTEM_PROMPT = """\
-ORACLE investment deep-dive analyst for Maksim's portfolio.
-
-Input: ONE InvestmentSignal + his current portfolio allocation.
-
-Output 5 fields in Russian. Be CONCRETE — actual prices, dates, names,
-percentages. Generic phrases ("monitor closely", "around this time") = fail.
-
-Anchor to Maksim's actual allocation (sizing_recommendation must reference
-the % he currently has in this and related positions).
-
-Educational analysis only — no buy/sell language. Frame everything as
-"setup", "scenario", "what would have to happen for X".
-
-JSON only.
-"""
 
 
 async def run_invest_deep_dive(

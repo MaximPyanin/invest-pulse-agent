@@ -30,7 +30,7 @@ import logging
 from datetime import datetime, timezone
 from typing import Any
 
-from .db import get_db
+from ..db import get_db
 
 log = logging.getLogger(__name__)
 
@@ -195,7 +195,7 @@ def _get_known_assets() -> dict[str, str]:
     merged in from CUSTOM_PORTFOLIO_ASSETS — they may not have live prices but
     are still valid portfolio entries.
     """
-    from .agents.market import (  # noqa: PLC0415
+    from ..agents.market import (  # noqa: PLC0415
         COMMODITY_SYMBOLS,
         CRYPTO_COINGECKO,
         DRONE_DEFENSE_SYMBOLS,
@@ -358,7 +358,7 @@ async def add_usd_holding(
 ) -> dict[str, Any]:
     """Add a position by its dollar cost-basis (no quantity / no avg price).
 
-    Used when the user knows only "I put $1,800 into NATO ETF" and not the
+    Used when the user knows only "I put $500 into this ETF" and not the
     exact share count or average buy price. The P&L is later approximated via
     price drift from `price_at_add` snapshot (compute_pnl handles the math).
 
@@ -951,8 +951,8 @@ if __name__ == "__main__":
     )
 
     async def _main() -> None:
-        from .agents.market import collect_market_data
-        from .db import init_db
+        from ..agents.market import collect_market_data
+        from ..db import init_db
 
         await init_db()
 
