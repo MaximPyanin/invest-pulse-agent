@@ -67,7 +67,8 @@ class InvestDeepDive(BaseModel):
         description=(
             "1-2 sentences in Russian. Realistic max drawdown % from current "
             "price + ONE concrete trigger that causes it. Example: "
-            "'-25% к $36 при остановке Казахстан-поставок или отмене MSFT-PPA.'"
+            "'-25% к $36 при перебоях в поставках ключевых компонентов или "
+            "срыве крупного заказа.'"
         )
     )
 

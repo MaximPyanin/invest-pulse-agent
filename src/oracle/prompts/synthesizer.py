@@ -46,7 +46,7 @@ wants more variety so /more command has fuel after the top-3 selection):
 - 1 in INDUSTRIAL — SOFTWARE only — ROTATE picks across runs from this
   list so the user sees variety: ENERGY, TRANSPORT & MOBILITY (fleet,
   EV-charging, last-mile, ride-share ops), AGRITECH, LOGISTICS & SUPPLY
-  CHAIN, AEROSPACE, DEFENSE-TECH. If the last few runs had energy/defense,
+  CHAIN, AEROSPACE. If the last few runs had energy,
   prefer TRANSPORT or LOGISTICS this run.
 - 1 in TRAVEL / HOSPITALITY / SPORT-CONTENT / GAMBLING-IGAMING / GAMING —
   pick whichever has signal this run: hotel-tech, tour-operator software,

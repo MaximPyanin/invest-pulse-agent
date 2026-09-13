@@ -1,7 +1,7 @@
 """Scout agent — Step 5.
 
-Collects textual signals from news + geopolitics + military OSINT RSS feeds
-and persists them to the `signals` table (Step 2 schema).
+Collects textual signals from general news RSS feeds and persists them to
+the `signals` table (Step 2 schema).
 
 This is the first collector that produces TEXTUAL signals (vs Step 4's
 structured numerical market data). Output flows two ways:
@@ -55,7 +55,6 @@ SCOUT_FEEDS: dict[str, str] = {
     "bloomberg/markets":    "https://feeds.bloomberg.com/markets/news.rss",
     "ft/all":               "https://www.ft.com/rss/home",
     "ap/business":          "https://feeds.ap.org/rss/apf-business",
-    "isw/main":             "https://understandingwar.org/rss.xml",
 
     # ----- Google News meta-aggregator (always reachable, broad coverage) ----
     "gnews/world":            "https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en",
@@ -90,7 +89,7 @@ SCOUT_FEEDS: dict[str, str] = {
 }
 
 HTTP_TIMEOUT = 20.0
-# Real browser User-Agent — some publishers (FT, ISW) 403 anything that
+# Real browser User-Agent — some publishers (e.g. FT) 403 anything that
 # looks like a Python script. This UA is harmless for friendly feeds.
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "

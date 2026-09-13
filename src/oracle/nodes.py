@@ -6,7 +6,7 @@ name graph.py expects. Placeholders remain for nodes whose implementations
 are still ahead in the roadmap.
 
 Replacement progress:
-    scout                → Step 5  (Reuters/FT/ISW RSS)             ✅ real
+    scout                → Step 5  (Reuters/FT/AP RSS)              ✅ real
     market               → Step 4  (yfinance + CoinGecko + FRED)    ✅ real
     trend                → Step 6  (HN/PH/Reddit/GitHub/VC RSS)     ✅ real
     custom               → Step 7  (Telethon/YouTube/website RSS)   ✅ real

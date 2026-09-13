@@ -20,11 +20,11 @@ VALIDATE EACH SCENARIO ALONG 6 AXES:
 
 1. trend — must reference CURRENT momentum with numbers (24h or 7d %).
    BAD: "позиция работает в фоне", "сектор стабилен". WEAKEN.
-   GOOD: "Уран -5% за день, 7d momentum +18% — техническая просадка".
+   GOOD: "Сектор чипов -5% за день, 7d momentum +18% — техническая просадка".
 
 2. critic_bull / critic_bear — must be CONCRETE, with names/numbers.
    BAD: "Базовая диверсифицированная позиция — индексы растут".
-   GOOD: "AI-PPA Microsoft + Amazon $13bn — структурный спрос 10 лет".
+   GOOD: "Заказы Microsoft + Amazon на $13bn — структурный спрос на годы вперёд".
    If both critics sound generic / interchangeable across multiple
    assets → WEAKEN, instruct rewriter to make them asset-specific.
 

@@ -414,22 +414,19 @@ WHAT'S IN SCOPE (industries — go BROAD, all corners of life):
   · Logistics & supply chain: freight broker scoring, warehouse analytics,
     customs paperwork automation
   · Aerospace: OSINT for launches, satellite-data SaaS, supplier intel
-  · Defense-tech: procurement intelligence, OSINT dashboards, training
-    simulation, supply-chain compliance for defense contractors,
-    drone-fleet management SOFTWARE (not the drones themselves)
 
 WHAT IS OUT OF SCOPE (hard dealbreakers):
 - Physical products of any kind (hardware, manufactured goods, drugs,
-  vehicles, weapons themselves — even if the surrounding industry is in
-  scope; you build SOFTWARE for these verticals, never the hardware)
+  vehicles — even if the surrounding industry is in scope; you build
+  SOFTWARE for these verticals, never the hardware)
 - Food delivery requiring drivers (the courier ops, not delivery software)
 - Enterprise sales cycles longer than 3 months (no Fortune-500 procurement)
 - Pure offline services (consulting, agencies, in-person therapy, gym buildouts)
 - Idea that is literally "ChatGPT for X" with no defensible workflow or data moat
 - Any vertical requiring multi-month legal/medical certification BEFORE day-one
-  revenue (e.g. FDA-cleared medical device, banking license, ITAR-controlled
-  weapons export licence). Light compliance is fine — ITAR-adjacent OSINT or
-  unclassified procurement data is fine; building actual munitions is not.
+  revenue (e.g. FDA-cleared medical device, banking license). Light
+  compliance is fine; anything requiring a specialized government license
+  before day-one revenue is not.
 
 WHAT IS FINE (any online/web product Maksim can ship as solo dev):
 - Web SaaS, dashboards, CRMs, marketplaces, analytics platforms
@@ -461,7 +458,7 @@ EQUAL-WEIGHT INDUSTRY QUOTA for a batch of 8-12 ideas:
 - AT LEAST 1 idea from PROFESSIONAL: {education, fintech, insurance,
   b2b_services, hr_recruiting, legaltech, real_estate, productivity}
 - AT LEAST 1 idea from INDUSTRIAL: {energy, agritech, logistics_supply,
-  aerospace, defense_tech}  ← SOFTWARE only
+  aerospace}  ← SOFTWARE only
 - AT LEAST 1 idea from TRAVEL/MOBILITY: {travel_hospitality, transport_mobility}
   ← Maksim says these are CONSISTENTLY MISSING. Examples: hotel-tech /
   tour-operator software, AirBnB host analytics, Booking.com partner tools,
@@ -475,7 +472,7 @@ EQUAL-WEIGHT INDUSTRY QUOTA for a batch of 8-12 ideas:
 
 If a required non-tech bucket has weak signal this run, INVENT a plausible
 online MVP from adjacent signals (Reddit health/sport/casino subs, marketing
-trends, edu requests, defense news, agritech VC deals). Lower confidence
+trends, edu requests, agritech VC deals). Lower confidence
 to 55-65 for these stretch ideas — let critic decide. NEVER omit a
 required bucket because tech looks "stronger". Tech ALREADY won 1 slot —
 the other 4-9 are for the rest of the world.
@@ -490,7 +487,7 @@ all of them B2B SaaS. Target mix:
   - 1-2 ideas in category E (Hobby / Educational / Info-product)
 
 INDUSTRIAL VERTICALS — SOFTWARE ONLY:
-For energy/transport/agritech/logistics/aerospace/defense ideas, you MUST
+For energy/transport/agritech/logistics/aerospace ideas, you MUST
 propose a SOFTWARE product (web dashboard, RAG-search, CRM, scheduling,
 OSINT, simulation, claims processing, fleet telemetry, supplier discovery,
 compliance automation, etc.) — never a physical hardware product. Examples:
@@ -499,7 +496,6 @@ compliance automation, etc.) — never a physical hardware product. Examples:
 - AGRITECH: "Crop pricing predictor dashboard for small US farmers"
 - LOGISTICS: "Browser extension scoring freight broker reliability"
 - AEROSPACE: "OSINT dashboard tracking satellite launches + manifests"
-- DEFENSE: "Procurement intelligence platform for defense contractors"
 - GAMING: "Discord-bot tracking indie game launch metrics"
 - INSURANCE: "AI claims-triage SaaS for small auto-insurance brokers"
 
@@ -511,7 +507,7 @@ the closest match from this list):
   creator_economy, b2b_services, saas, ai_tools, hr_recruiting,
   legaltech, travel_hospitality, real_estate, food_beverage,
   energy, transport_mobility, agritech, gaming,
-  logistics_supply, insurance, aerospace, defense_tech, other
+  logistics_supply, insurance, aerospace, other
 
 ==============================================================================
 INPUT & OUTPUT

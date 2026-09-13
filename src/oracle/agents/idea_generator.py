@@ -335,7 +335,7 @@ ALLOWED_INDUSTRIES: set[str] = {
     "food_beverage",
     # 2026-05 additions (broader-than-mainstream + sport + gambling):
     "energy", "transport_mobility", "agritech", "gaming",
-    "logistics_supply", "insurance", "aerospace", "defense_tech",
+    "logistics_supply", "insurance", "aerospace",
     "sport_content",       # sports media, fantasy, analytics platforms, fan tools
     "gambling_igaming",    # 18+ casino, sportsbook, poker, betting analytics
     "other",
@@ -397,7 +397,7 @@ def _normalize_industry(raw: str | None) -> str:
     if any(k in t for k in ("b2b", "crm", "sales", "ops")):
         return "b2b_services"
     # 2026-05 additions
-    if any(k in t for k in ("energy", "utility", "grid", "solar", "oil", "gas", "nuclear", "power")):
+    if any(k in t for k in ("energy", "utility", "grid", "solar", "oil", "gas", "power")):
         return "energy"
     if any(k in t for k in ("transport", "mobility", "vehicle", "auto", "ev", "fleet", "ride", "taxi", "carshare", "scooter", "bike_share")):
         return "transport_mobility"
@@ -411,8 +411,6 @@ def _normalize_industry(raw: str | None) -> str:
         return "insurance"
     if any(k in t for k in ("aerospace", "space", "satellite", "launch", "rocket", "orbit")):
         return "aerospace"
-    if any(k in t for k in ("defense", "military", "weapon", "armed", "intel", "milspec", "warfare", "drone_combat", "c2")):
-        return "defense_tech"
     if any(k in t for k in ("sport_content", "sport_media", "fantasy", "sport_analytic", "fan_platform", "esports_media")):
         return "sport_content"
     if any(k in t for k in ("gambling", "igaming", "casino", "sportsbook", "betting", "poker", "lottery", "wagering")):
