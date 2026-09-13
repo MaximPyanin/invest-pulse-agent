@@ -49,9 +49,9 @@ class InvestDeepDive(BaseModel):
         description=(
             "2-3 sentences in Russian. ONE similar setup from past 5-10 years "
             "that played out — describe both setup and outcome. Educational "
-            "framing. Example: 'Уран 2023: рост на AI-PPA narrative до $107, "
-            "затем коррекция -35% на Казахстан supply news. Текущий setup "
-            "напоминает август 2023 — рост на PPA-сделках MSFT-CEG.'"
+            "framing. Example: 'Чипы 2023: рост на AI-capex narrative до $107, "
+            "затем коррекция -35% на новостях о перебоях в поставках. Текущий "
+            "setup напоминает август 2023 — рост на крупных заказах от гиперскейлеров.'"
         )
     )
     sizing_recommendation: str = Field(
@@ -59,7 +59,7 @@ class InvestDeepDive(BaseModel):
             "2-3 sentences in Russian on what % of portfolio is reasonable for "
             "this position given Maksim's current allocation (passed in input). "
             "Reference his actual holdings + risk profile. Example: 'У тебя "
-            "уже 9% в NUCL — добор до 12-13% оправдан на просадке к $48. "
+            "уже 9% в SMH — добор до 12-13% оправдан на просадке к $48. "
             "Дальше — концентрация выше комфортного для твоего портфеля.'"
         )
     )

@@ -85,7 +85,7 @@ async def add_holding_callback_entry(
         await query.message.reply_text(
             f"⚠️ <b>{display_name(sig.asset)}</b> не в списке отслеживаемых для портфеля.\n\n"
             f"Бот трекает реальные позиции — добавлять можно только: "
-            f"<code>CSPX, SMH, NATO, NUCL, EXH1, IB1T, ETH-CORE, IB01, CASH-USD, GOLD-PHYS, NVDA</code>.\n\n"
+            f"<code>CSPX, SMH, EXH1, IB1T, ETH-CORE, IB01, CASH-USD, GOLD-PHYS, NVDA</code>.\n\n"
             f"Если хочешь экспозицию на {display_name(sig.asset)} — найди соответствующий "
             f"UCITS-ETF в твоём списке и добавь его.",
             parse_mode="HTML",
@@ -762,9 +762,6 @@ ADD_HOLDING_USAGE = (
     "<i>Crypto:</i> BTC, ETH, SOL, XRP\n"
     "<i>Mega-cap + AI stocks:</i> NVDA, MSFT, GOOGL, AAPL, TSLA, AMD, META, AMZN, "
     "TSM, AVGO, NFLX, PLTR, SMCI, ARM, ASML, MU, VRT, SOUN, AI\n"
-    "<i>Nuclear:</i> SMR, OKLO, NNE, LEU, CCJ, BWXT, UEC, URA, VST, CEG\n"
-    "<i>Drones &amp; defense:</i> AVAV, KTOS, RCAT, ONDS, RKLB, EH, UMAC\n"
-    "<i>Trump/political:</i> DJT, RUM, PSQH, PHUN\n"
     "<i>ETFs:</i> SPY, QQQ, XLK, XLE, XLF, VNQ\n"
     "<i>Commodities:</i> GOLD, SILVER, OIL_WTI, OIL_BRENT, NATGAS, COPPER, WHEAT\n"
     "<i>Forex:</i> EURUSD, USDPLN, EURPLN, USDBYN, EURBYN, USDRUB, DXY\n"
@@ -806,7 +803,7 @@ async def cmd_add_holding(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> Non
         await update.message.reply_text(
             f"⚠️ <code>{asset_label}</code> не в whitelist'е портфеля.\n\n"
             f"Бот трекает реальные позиции — добавлять можно только:\n"
-            f"<code>CSPX, SMH, NATO, NUCL, EXH1, IB1T, ETH-CORE, IB01, "
+            f"<code>CSPX, SMH, EXH1, IB1T, ETH-CORE, IB01, "
             f"CASH-USD, GOLD-PHYS, NVDA</code>",
             parse_mode="HTML",
         )

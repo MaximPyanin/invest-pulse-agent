@@ -195,7 +195,7 @@ CREATE INDEX IF NOT EXISTS idx_portfolio_class ON portfolio_holdings(asset_class
 -- ----------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS investment_watchlist (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
-    asset_label     TEXT NOT NULL,                 -- e.g. 'NUCL', 'BTC'
+    asset_label     TEXT NOT NULL,                 -- e.g. 'SMH', 'BTC'
     baseline_price  REAL NOT NULL,                 -- price when Maksim tapped Watch
     added_at        TEXT NOT NULL,                 -- ISO 8601 UTC
     source_sig_id   TEXT,                          -- digest signal id (for context)

@@ -399,7 +399,7 @@ def lookup_current_price(asset_name: str, market_data: dict) -> float | None:
     Step 4 collects market data ~30s before the validator runs, so prices
     here are essentially live for the validation purpose.
 
-    For EU UCITS tickers (CSPX/SMH/NATO/NUCL/EXH1/IB1T/AETH/IB01) we look
+    For EU UCITS tickers (CSPX/SMH/EXH1/IB1T/AETH/IB01) we look
     in the `eu_ucits` bucket FIRST and apply FX conversion so the price
     is comparable to what the scenario already stored (always USD).
     Otherwise validator computes huge fake drift (e.g. ETH-CORE listed
@@ -419,8 +419,7 @@ def lookup_current_price(asset_name: str, market_data: dict) -> float | None:
         return None
 
     # 2. Direct key match in standard buckets
-    for bucket_key in ("equities", "stocks", "nuclear", "drones_defense",
-                       "trump_political", "crypto", "commodities", "forex",
+    for bucket_key in ("equities", "stocks", "crypto", "commodities", "forex",
                        "indices", "eu_ucits"):
         bucket = market_data.get(bucket_key, {}) or {}
         if name in bucket:

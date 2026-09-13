@@ -102,9 +102,6 @@ def format_market_for_investment(market_data: dict) -> str:
 
     _section("EQUITIES & ETFs", "equities", "${price:.2f}")
     _section("MEGA-CAP + AI STOCKS", "stocks", "${price:.2f}")
-    _section("NUCLEAR ENERGY (SMRs + uranium + AI-power utilities)", "nuclear", "${price:.2f}")
-    _section("DRONES & UNMANNED DEFENSE", "drones_defense", "${price:.2f}")
-    _section("TRUMP / POLITICAL-NARRATIVE TICKERS", "trump_political", "${price:.2f}")
     _section("CRYPTO", "crypto", "${price:,.0f}")
     _section("COMMODITIES (gold/silver/oil/natgas/copper/wheat)", "commodities", "${price:,.2f}")
     _section("FOREX (EUR/USD/PLN/BYN/RUB pairs + DXY)", "forex", "{price:.4f}")
@@ -547,17 +544,9 @@ async def _fetch_news_for_asset(label: str, asset_class: str, limit: int = 3) ->
     # PRIMARY (high-specificity) terms — multi-word phrases, less false-positive risk.
     # SECONDARY (single-word) terms — only used as fallback if PRIMARY returns nothing.
     overlays: dict[str, tuple[list[str], list[str]]] = {
-        "NUCL":      (
-            ["uranium", "nuclear plant", "SMR", "Cameco", "Constellation", "small modular reactor"],
-            ["URA", "DOE nuclear"],
-        ),
         "EXH1":      (
             ["crude oil", "OPEC", "Brent", "WTI", "oil price", "energy stocks", "gas prices"],
             ["oil refinery", "natural gas"],
-        ),
-        "NATO":      (
-            ["NATO", "defense spending", "Ukraine", "military aid", "drone warfare"],
-            ["defense contractor", "Pentagon", "Lockheed", "Raytheon"],
         ),
         "SMH":       (
             ["semiconductor", "NVIDIA", "TSMC", "AI chips", "chip stocks", "AI infrastructure"],
@@ -646,8 +635,8 @@ async def _fetch_news_for_asset(label: str, asset_class: str, limit: int = 3) ->
 
 # Per-asset templates for auto-filler. Each holding gets UNIQUE bull/bear/
 # trend/prediction text — no more generic "Базовая диверсифицированная
-# позиция" copy-pasted across CSPX/EXH1/NATO/NUCL/SMH. Maksim complained
-# the templates looked identical; this fixes that.
+# позиция" copy-pasted across every holding. Maksim complained the
+# templates looked identical; this fixes that.
 HOLD_FILLER_TEMPLATES: dict[str, dict[str, str]] = {
     "CSPX": {
         "trend":      "Ядро портфеля движется в коридоре с S&P 500; без свежих макро-сюрпризов — фоновая работа.",
@@ -664,22 +653,6 @@ HOLD_FILLER_TEMPLATES: dict[str, dict[str, str]] = {
         "prediction": "Ключевой триггер — отчёт NVIDIA. Жду консолидации до публикации; пробой максимумов на beat → +10-15%, miss → откат к 50-DMA.",
         "mid":        "1-3 месяца: продолжение AI capex cycle; следить за hyperscaler guidance и Blackwell-поставками.",
         "long":       "1-3 года: SMH остаётся стратегической ставкой на AI-стек (EUV, HBM, foundry); риск-cycle через 2026-27.",
-    },
-    "NATO": {
-        "trend":      "Defense-сектор стабильно растёт на фоне расширения бюджетов NATO; индекс в восходящем канале без явных просадок.",
-        "bull":       "Расходы стран NATO на оборону достигли 2% ВВП; контракты на 10+ лет вперёд (Lockheed F-35, RTX patriot) дают visibility выручки.",
-        "bear":       "Дипломатическая разрядка / ceasefire в активных конфликтах → переоценка сектора вниз на 10-15% за недели.",
-        "prediction": "Ожидаю продолжение восходящего тренда до следующего саммита NATO; новые контракты по drone defense — главный катализатор upside.",
-        "mid":        "1-3 месяца: defense budgets fiscal-year cycle, новые контракты на patriot/SAM/drones продолжают идти.",
-        "long":       "1-3 года: структурный bid под defense supply-chain автономии (US/EU re-shoring); CAGR 8-12%.",
-    },
-    "NUCL": {
-        "trend":      "Уран-сегмент откатился от максимумов, но AI-PPA сделки (MSFT-CEG, Amazon-Talen, Google-Kairos) держат структурный спрос.",
-        "bull":       "Гиперскейлеры законтрактовали multi-billion PPA на 10-20 лет; уран supply-side остаётся ограниченным (Cameco, Казахстан).",
-        "bear":       "Спот-уран в верхней 6-летней четверти; любой sentiment-разворот (отмена PPA, regulatory delay) даёт -25% за недели.",
-        "prediction": "Жду консолидации в текущем диапазоне; пробой вверх на новой PPA-сделке → следующий уровень сопротивления; downside ограничен AI-нарративом.",
-        "mid":        "1-3 месяца: следить за DOE SMR funding и новыми hyperscaler-PPA; диапазон $48-60.",
-        "long":       "1-3 года: nuclear renaissance + AI power demand структурно поддерживают сектор; цель $80-110.",
     },
     "EXH1": {
         "trend":      "Энергетика EU балансирует между опасениями рецессии (давит цены) и геополитикой Ближний Восток / Россия (поддерживает).",

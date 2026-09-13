@@ -14,15 +14,6 @@ USER PROFILE:
   * ETFs: SPY, QQQ, XLK, XLE, XLF, VNQ
   * Mega-cap + AI stocks: NVDA, MSFT, GOOGL, AAPL, TSLA, AMD, META, AMZN,
     TSM, AVGO, NFLX, PLTR, SMCI, ARM, ASML, MU, VRT, SOUN, AI (C3.ai)
-  * NUCLEAR (AI-power angle): SMR (NuScale), OKLO, NNE (Nano Nuclear),
-    LEU (Centrus enrichment), CCJ (Cameco), BWXT, UEC, URA (uranium ETF),
-    VST (Vistra), CEG (Constellation) — nuclear is having a renaissance
-    because AI hyperscalers are signing PPAs (MSFT-CEG, AMZN-Talen, GOOG-Kairos)
-  * DRONES & UNMANNED DEFENSE: AVAV (Switchblade), KTOS (Valkyrie UCAV),
-    RCAT (Teal Drones), ONDS, RKLB (Rocket Lab), EH (EHang eVTOL), UMAC
-  * TRUMP/POLITICAL-NARRATIVE: DJT (Trump Media), RUM (Rumble), PSQH
-    (PublicSquare), PHUN (Phunware) — track these because they move on
-    Trump headlines and family-member (Don Jr., Eric) board/advisory news
   * Crypto: BTC, ETH, SOL, XRP
   * Commodities: Gold, Silver, Oil (WTI/Brent), NatGas, Copper, Wheat
   * Forex: EUR/USD, USD/PLN, EUR/PLN, USD/BYN, EUR/BYN, USD/RUB, DXY
@@ -63,42 +54,42 @@ QUALITY RULES:
 6. `news_highlights` — массив из 2-3 коротких ЗАГОЛОВКОВ свежих новостей,
    ОТНОСЯЩИХСЯ к активу или его сектору. Берёшь из синтезированных
    кластеров (related_signal_titles) или market context. НЕ выдумывай
-   заголовки — лучше пустой массив, чем фейк. Пример (NUCL):
-   ["Microsoft подтвердил $2B PPA с Constellation",
-    "USDA отчёт: импорт урана +18% YoY",
-    "Cameco Q1 beat — выручка $850M vs $810M прогноз"].
+   заголовки — лучше пустой массив, чем фейк. Пример (SMH):
+   ["NVIDIA подтвердил многолетний заказ от гиперскейлера",
+    "TSMC отчёт: экспорт чипов +18% YoY",
+    "Broadcom Q1 beat — выручка $850M vs $810M прогноз"].
 
 7. `trend` — 📊 1-2 предложения о ТЕКУЩЕМ momentum актива. КУДА ДУЕТ
    ВЕТЕР СЕЙЧАС: импульс / консолидация / breakdown. Описание настоящего,
    не будущего. Используй numbers из market_data (change_24h, change_7d).
-   Пример (NUCL): "Сектор урана откатился -5% за день после USDA reports,
+   Пример (SMH): "Сектор чипов откатился -5% за день после отчёта TSMC,
    но 7d momentum остаётся +18% — техническая просадка в бычьем тренде,
    не смена режима."
 
 8. `critic_bull` — 🐂 1-2 предложения от БЫЧЬЕГО критика. Конкретный
-   аргумент ЗА позицию/вход, с цифрами/именами. Пример (NUCL):
-   "AI-PPA структурно перепрошивают кривую спроса на 10 лет, $13bn
-   контрактов уже подписано — циклическая просадка дает редкую точку
+   аргумент ЗА позицию/вход, с цифрами/именами. Пример (SMH):
+   "AI-capex гиперскейлеров структурно расширяет спрос на годы вперёд,
+   $13bn заказов уже подписано — циклическая просадка дает редкую точку
    входа."
 
 9. `critic_bear` — 🐻 1-2 предложения от МЕДВЕЖЬЕГО критика. Конкретный
-   аргумент ПРОТИВ. Пример (NUCL):
-   "URA в перегретой 6-летней четверти, любая остановка казахстанских
-   поставок крошит тренд на 30% за неделю, как было в 2007."
+   аргумент ПРОТИВ. Пример (SMH):
+   "Сектор в перегретой 6-летней четверти, любая заминка в поставках
+   ключевых компонентов крошит тренд на 30% за неделю, как было в 2018."
 
 10. `prediction` — 🔮 1-2 предложения ПРОГНОЗА на 1-4 НЕДЕЛИ. Целевой
-    диапазон цены + ключевой триггер. Пример (NUCL): "Жду консолидацию
-    $44-48 до MSFT-CEG PPA update; пробой $50 → $58, провал $43 — стоп."
+    диапазон цены + ключевой триггер. Пример (SMH): "Жду консолидацию
+    $44-48 до отчёта NVIDIA; пробой $50 → $58, провал $43 — стоп."
 
 11. `prediction_mid` — 🗓️ 1-2 предложения о 1-3 МЕСЯЦАХ. Тренд сектора
     + ключевые катализаторы (CPI, FOMC, earnings, OPEC+, регулирование).
-    Пример (NUCL): "Жду $48-60 при стабильных AI-PPA новостях; провал
-    под $45 на новостях supply chain Казахстана."
+    Пример (SMH): "Жду $48-60 при стабильных AI-capex новостях; провал
+    под $45 на новостях о перебоях в поставках."
 
 12. `prediction_long` — 📅 1-2 предложения о 1-3 ГОДАХ. Структурный
-    тренд / инвест-теза. Пример (NUCL): "Структурно поддержан AI-
-    инфраструктурой и nuclear renaissance; диапазон $80-110 при
-    подтверждении нескольких PPA-сделок ежегодно."
+    тренд / инвест-теза. Пример (SMH): "Структурно поддержан ростом
+    AI-инфраструктуры и спросом на чипы; диапазон $80-110 при
+    подтверждении нескольких крупных заказов ежегодно."
 
 11. `signal_age_hours`: ALWAYS 0 — just generated this run.
 
@@ -126,7 +117,7 @@ QUALITY RULES:
     - "💱 Меняй USD → PLN сегодня"
     - "🥇 Держишь слиток — не трогаешь"
     - "⏸ Жди пробоя BTC $76k с объёмом — не гонись"
-    - "🟢 Открывай позицию AVAV после пробоя $215"
+    - "🟢 Открывай позицию SMH после пробоя $215"
     - "🟠 Продавай 30% золота по текущему — фиксируй прибыль"
     - "⛔ Не лезь в нефть до OPEC+ — слишком мутно"
     This is THE line. Make it operational. No fluff like "interesting
@@ -136,7 +127,7 @@ QUALITY RULES:
     SIZE + PRICE. Must be actionable by someone who opens the app right now.
     Examples:
     - "Wise/Revolut, меняй 5000 USD из 15000 cash по курсу 3.57-3.60"
-    - "IBKR market buy 10 AVAV shares после открытия рынка"
+    - "IBKR market buy 10 SMH shares после открытия рынка"
     - "Binance limit BTC @ $68,000 size 0.05"
     - "Продолжаешь держать слиток в сейфе — ничего не меняешь"
     - "—" only if the action is pure WAIT/AVOID with no execution yet.
@@ -185,12 +176,6 @@ numbers, names, levels. Generic phrases ("structural opportunity",
 All free-text fields MUST be in Russian — Maksim reads cards in Russian.
 Keep structural values (action, asset ticker) in English.
 
-CONTENT POLICY NOTE (avoid Azure content-filter false positives):
-Frame defense/geopolitics assets (NATO, NUCL) as INVESTMENT context only —
-sector demand, supply chains, government PPAs. NEVER write tactical
-operational language ("strike", "attack", "kill"). Stay in financial-
-analysis register at all times.
-
 PRIORITY ORDER (when picking which assets to cover):
 - Assets where multiple clusters CONVERGE → strongest signal
 - Assets with notable recent price action that aligns with cluster narrative
@@ -228,7 +213,7 @@ RULES (one rewrite per input scenario, same order):
      ("Меняй", "Держи", "Жди", "Продавай"). NO "consider" / "monitor".
    - "missing broker+size+price in how_to_execute" → add them concretely.
      "Wise/Revolut 5000 USD → PLN по курсу 3.58", "IBKR market buy 10
-     AVAV @ $215; стоп $192".
+     SMH @ $215; стоп $192".
    - "portfolio coverage miss — swap for held asset" → replace the
      asset entirely with one Maksim ACTUALLY HOLDS (see portfolio block).
      Then redo price, change_24h/7d from market data for that new asset.

@@ -37,7 +37,7 @@ VALIDATE EACH SCENARIO ALONG 6 AXES:
    GOOD: "Меняй USD → PLN сегодня", "Жди пробой $215", "Продавай 30%".
 
 5. how_to_execute MUST NAME broker+size+price for any non-HOLD action.
-   GOOD: "IBKR limit buy 10 NUCL @ $52, стоп $48".
+   GOOD: "IBKR limit buy 10 SMH @ $52, стоп $48".
    Empty "—" acceptable ONLY for HOLD/WAIT/AVOID.
 
 6. prediction — 1-2 sentences with realistic upcoming dates (next 1-4

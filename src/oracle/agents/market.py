@@ -85,48 +85,6 @@ STOCK_SYMBOLS: dict[str, str] = {
     "AI":    "AI",     # C3.ai — enterprise AI software
 }
 
-# yfinance — nuclear energy + nuclear-for-AI (data center power deals)
-# Thesis: AI training clusters need gigawatts; nuclear is having a renaissance.
-# Small modular reactors (SMRs), uranium supply, and hyperscaler PPA deals
-# (Microsoft-Constellation, Amazon-Talen, Google-Kairos) are the catalysts.
-NUCLEAR_SYMBOLS: dict[str, str] = {
-    "SMR":  "SMR",    # NuScale Power — SMR developer
-    "OKLO": "OKLO",   # Oklo Inc — advanced fission (Sam Altman backed)
-    "NNE":  "NNE",    # Nano Nuclear Energy — micro-reactors
-    "LEU":  "LEU",    # Centrus Energy — uranium enrichment (US-onshore)
-    "CCJ":  "CCJ",    # Cameco — uranium miner (largest Western)
-    "BWXT": "BWXT",   # BWX Technologies — naval + commercial nuclear reactors
-    "UEC":  "UEC",    # Uranium Energy Corp — uranium miner
-    "URA":  "URA",    # Global X Uranium ETF — diversified uranium basket
-    "VST":  "VST",    # Vistra — nuclear fleet + AI data-center power PPAs
-    "CEG":  "CEG",    # Constellation Energy — largest US nuclear fleet, MSFT deal
-}
-
-# yfinance — drones / unmanned systems / defense AI
-# Thesis: drone warfare is reshaping defense (Ukraine, Red Sea, Taiwan).
-# US primes are slow; upstarts with AI autonomy are the growth story.
-DRONE_DEFENSE_SYMBOLS: dict[str, str] = {
-    "AVAV": "AVAV",   # AeroVironment — Switchblade loitering munitions
-    "KTOS": "KTOS",   # Kratos Defense — unmanned combat aircraft (Valkyrie)
-    "RCAT": "RCAT",   # Red Cat Holdings — military drones (Teal Drones)
-    "ONDS": "ONDS",   # Ondas Holdings — drone networks + autonomous systems
-    "RKLB": "RKLB",   # Rocket Lab — space launch + defense payloads
-    "EH":   "EH",     # EHang — Chinese eVTOL / passenger drones
-    "UMAC": "UMAC",   # Unusual Machines — drone components (Don Jr. advisor)
-}
-
-# yfinance — Trump / family-connected politically-driven stocks
-# Thesis: these tickers move on Trump news cycles, policy announcements, and
-# family-member board activity. High volatility, high meme-narrative exposure.
-# NOT a recommendation — tracked so the investment_analyzer can explain WHY
-# they're moving when headlines hit.
-TRUMP_POLITICAL_SYMBOLS: dict[str, str] = {
-    "DJT":  "DJT",    # Trump Media & Technology Group (Truth Social parent)
-    "RUM":  "RUM",    # Rumble — video platform, Trump family ties
-    "PSQH": "PSQH",   # PublicSquare — "anti-woke" marketplace, Don Jr. investor
-    "PHUN": "PHUN",   # Phunware — Trump 2020 campaign app vendor
-}
-
 # yfinance — commodities (futures continuous contracts)
 COMMODITY_SYMBOLS: dict[str, str] = {
     "GOLD":      "GC=F",  # Gold front-month
@@ -177,8 +135,6 @@ CRYPTO_COINGECKO: dict[str, str] = {
 EU_UCITS_SYMBOLS: dict[str, str] = {
     "CSPX":     "CSPX.L",    # iShares Core S&P 500 UCITS (ISIN IE00B5BMR087)
     "SMH":      "SMH.MI",    # VanEck Semiconductor UCITS (ISIN IE00BMC38736)
-    "NATO":     "NATO.L",    # HANetf Future of Defence UCITS (ISIN IE000OJ5TQP4)
-    "NUCL":     "NUCG.L",    # VanEck Uranium & Nuclear Technologies (IE000M7V94E1)
     "EXH1":     "EXH1.DE",   # iShares STOXX Europe 600 Oil & Gas (DE000A0H08M3)
     "IB1T":     "IB1T.DE",   # iShares Bitcoin ETP (XS2940466316)
     "ETH-CORE": "AETH.SW",   # 21Shares Ethereum Core (SIX listing)
@@ -337,9 +293,6 @@ async def collect_market_data() -> tuple[dict[str, Any], list[str]]:
     tasks = {
         "equities":         fetch_yfinance("equities",         EQUITY_SYMBOLS),
         "stocks":           fetch_yfinance("stocks",           STOCK_SYMBOLS),
-        "nuclear":          fetch_yfinance("nuclear",          NUCLEAR_SYMBOLS),
-        "drones_defense":   fetch_yfinance("drones_defense",   DRONE_DEFENSE_SYMBOLS),
-        "trump_political":  fetch_yfinance("trump_political",  TRUMP_POLITICAL_SYMBOLS),
         "commodities":      fetch_yfinance("commodities",      COMMODITY_SYMBOLS),
         "forex":            fetch_yfinance("forex",            FOREX_SYMBOLS),
         "indices":          fetch_yfinance("indices",          INDEX_SYMBOLS),

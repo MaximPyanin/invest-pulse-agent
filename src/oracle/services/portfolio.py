@@ -46,8 +46,6 @@ log = logging.getLogger(__name__)
 CUSTOM_PORTFOLIO_ASSETS: dict[str, str] = {
     "CSPX":     "etf",        # iShares Core S&P 500 UCITS (IE00B5BMR087)
     "SMH":      "etf",        # VanEck Semiconductor UCITS (IE00BMC38736) — overrides US SMH
-    "NATO":     "etf",        # HANetf Future of Defence UCITS (IE000OJ5TQP4)
-    "NUCL":     "etf",        # VanEck Uranium & Nuclear UCITS (IE000M7V94E1)
     "EXH1":     "etf",        # iShares STOXX Europe 600 Oil & Gas (DE000A0H08M3)
     "IB1T":     "crypto",     # iShares Bitcoin ETP (XS2940466316)
     "ETH-CORE": "crypto",     # 21Shares Ethereum Core
@@ -63,8 +61,6 @@ CUSTOM_PORTFOLIO_ASSETS: dict[str, str] = {
 ASSET_DISPLAY_NAMES: dict[str, str] = {
     "CSPX":      "S&P 500 (CSPX)",
     "SMH":       "Чипы AI (SMH)",
-    "NATO":      "Оборонка (NATO)",
-    "NUCL":      "Уран/Ядерка (NUCL)",
     "EXH1":      "Нефть/Газ EU (EXH1)",
     "IB1T":      "Bitcoin (IB1T)",
     "ETH-CORE":  "Ethereum (ETH-CORE)",
@@ -114,30 +110,6 @@ ASSET_DISPLAY_NAMES: dict[str, str] = {
     "VRT":       "Vertiv (VRT) — DC-охлаждение",
     "SOUN":      "SoundHound AI (SOUN)",
     "AI":        "C3.ai (AI)",
-    # Nuclear / uranium
-    "SMR":       "NuScale Power (SMR)",
-    "OKLO":      "Oklo (OKLO)",
-    "NNE":       "Nano Nuclear (NNE)",
-    "LEU":       "Centrus Energy (LEU) — обогащение",
-    "CCJ":       "Cameco (CCJ) — уран",
-    "BWXT":      "BWX Tech (BWXT)",
-    "UEC":       "Uranium Energy (UEC)",
-    "URA":       "Global X Uranium ETF",
-    "VST":       "Vistra (VST) — энергия для AI",
-    "CEG":       "Constellation Energy (CEG)",
-    # Drones / defense
-    "AVAV":      "AeroVironment (AVAV) — Switchblade",
-    "KTOS":      "Kratos Defense (KTOS)",
-    "RCAT":      "Red Cat (RCAT) — дроны",
-    "ONDS":      "Ondas (ONDS) — дрон-сети",
-    "RKLB":      "Rocket Lab (RKLB) — космос/оборонка",
-    "EH":        "EHang (EH) — eVTOL",
-    "UMAC":      "Unusual Machines (UMAC)",
-    # Trump-narrative
-    "DJT":       "Trump Media (DJT)",
-    "RUM":       "Rumble (RUM)",
-    "PSQH":      "PublicSquare (PSQH)",
-    "PHUN":      "Phunware (PHUN)",
 }
 
 
@@ -155,19 +127,13 @@ def display_name(asset_label: str) -> str:
 # the ➕ Add button to always show options.
 TRACKABLE_PORTFOLIO_TICKERS: list[str] = [
     # Core UCITS portfolio (existing)
-    "CSPX", "SMH", "NATO", "NUCL", "EXH1",
+    "CSPX", "SMH", "EXH1",
     "IB1T", "ETH-CORE", "IB01",
     "CASH-USD", "GOLD-PHYS",
     # Individual stocks tracked in market.py
     "NVDA", "MSFT", "GOOGL", "AAPL", "TSLA", "AMD", "META", "AMZN",
     "TSM", "AVGO", "NFLX", "PLTR", "SMCI", "ARM", "ASML", "MU",
     "VRT", "SOUN", "AI",
-    # Nuclear / uranium
-    "SMR", "OKLO", "NNE", "LEU", "CCJ", "BWXT", "UEC", "URA", "VST", "CEG",
-    # Drones / defense
-    "AVAV", "KTOS", "RCAT", "ONDS", "RKLB", "EH", "UMAC",
-    # Trump-narrative
-    "DJT", "RUM", "PSQH", "PHUN",
     # ETFs
     "SPY", "QQQ", "XLK", "XLE", "XLF", "VNQ",
     # Commodities (paper exposure)
@@ -191,20 +157,17 @@ def _get_known_assets() -> dict[str, str]:
     """Return {asset_label: asset_class} for every tracked symbol.
 
     Uses the catalogs from market.py so adding a new ticker there auto-extends
-    the portfolio's allowed asset universe. Custom ETFs (CSPX, NATO, ...) are
+    the portfolio's allowed asset universe. Custom ETFs (CSPX, EXH1, ...) are
     merged in from CUSTOM_PORTFOLIO_ASSETS — they may not have live prices but
     are still valid portfolio entries.
     """
     from ..agents.market import (  # noqa: PLC0415
         COMMODITY_SYMBOLS,
         CRYPTO_COINGECKO,
-        DRONE_DEFENSE_SYMBOLS,
         EQUITY_SYMBOLS,
         FOREX_SYMBOLS,
         INDEX_SYMBOLS,
-        NUCLEAR_SYMBOLS,
         STOCK_SYMBOLS,
-        TRUMP_POLITICAL_SYMBOLS,
     )
 
     universe: dict[str, str] = {}
@@ -212,12 +175,6 @@ def _get_known_assets() -> dict[str, str]:
         universe[label] = "etf"
     for label in STOCK_SYMBOLS:
         universe[label] = "stock"
-    for label in NUCLEAR_SYMBOLS:
-        universe[label] = "nuclear"
-    for label in DRONE_DEFENSE_SYMBOLS:
-        universe[label] = "drones_defense"
-    for label in TRUMP_POLITICAL_SYMBOLS:
-        universe[label] = "trump_political"
     for label in COMMODITY_SYMBOLS:
         universe[label] = "commodity"
     for label in FOREX_SYMBOLS:
@@ -531,14 +488,12 @@ async def remove_holding(asset_label: str) -> bool:
 
 # Native listing currency for EU UCITS tickers we expose via market.EU_UCITS_SYMBOLS.
 # This is what the LSE/Xetra/SIX returns — we convert to USD before P&L math.
-#   USD: most Ireland-domiciled UCITS share classes (CSPX, NATO, NUCG, IB01) +
+#   USD: most Ireland-domiciled UCITS share classes (CSPX, IB01) +
 #        Swiss-listed 21Shares crypto ETPs (AETH)
 #   EUR: anything traded on Xetra (.DE) or Milan (.MI)
 EU_UCITS_CURRENCY: dict[str, str] = {
     "CSPX":     "USD",   # iShares CSPX.L — USD share class
     "SMH":      "EUR",   # VanEck SMH.MI on Borsa Italiana
-    "NATO":     "USD",   # HANetf NATO.L — USD share class
-    "NUCL":     "USD",   # VanEck NUCG.L — USD
     "EXH1":     "EUR",   # iShares EXH1.DE on Xetra
     "IB1T":     "EUR",   # iShares IB1T.DE — EUR-listed but underlying BTC USD
     "ETH-CORE": "USD",   # 21Shares AETH.SW — USD share class
@@ -583,7 +538,7 @@ ASSET_PRICE_PROXIES: dict[str, str] = {
 def _lookup_current_price(asset_label: str, market_data: dict) -> float | None:
     """Find the live USD price for asset_label across all market_data buckets.
 
-    For EU-listed UCITS tickers (CSPX, SMH, NATO, NUCL, EXH1, IB1T, ETH-CORE,
+    For EU-listed UCITS tickers (CSPX, SMH, EXH1, IB1T, ETH-CORE,
     IB01) we apply EU_UCITS_CURRENCY → USD conversion via live forex rates
     so all downstream P&L math stays in USD. Other buckets are assumed USD-
     native (yfinance default for US-listed tickers).
@@ -613,9 +568,6 @@ def _raw_price_in_buckets(asset_label: str, market_data: dict) -> float | None:
     for bucket_key in (
         "equities",
         "stocks",
-        "nuclear",
-        "drones_defense",
-        "trump_political",
         "commodities",
         "forex",
         "indices",
@@ -664,8 +616,7 @@ def _lookup_market_metrics(asset_label: str, market_data: dict) -> dict[str, flo
 def _raw_metrics_in_buckets(asset_label: str, market_data: dict) -> dict[str, float | None]:
     """Internal helper: scan all market_data buckets for change_24h/change_7d."""
     for bucket_key in (
-        "equities", "stocks", "nuclear", "drones_defense",
-        "trump_political", "commodities", "forex", "indices",
+        "equities", "stocks", "commodities", "forex", "indices",
         "eu_ucits", "crypto",
     ):
         bucket = market_data.get(bucket_key) or {}

@@ -394,7 +394,7 @@ def setup_scheduler(application: "Application") -> AsyncIOScheduler:
         morning_brief_job,
         # 09:30 Warsaw — после открытия EU бирж (London 09:00 BST,
         # Xetra/Milan/SIX 09:00 CET) yfinance уже имеет свежие котировки
-        # для UCITS-тикеров (CSPX/SMH/NATO/NUCL/EXH1/IB1T/IB01). На 07:00
+        # для UCITS-тикеров (CSPX/SMH/EXH1/IB1T/IB01). На 07:00
         # они возвращали NaN потому что биржи ещё закрыты.
         trigger=CronTrigger(hour=9, minute=30, timezone=tz_name),
         args=[application],
